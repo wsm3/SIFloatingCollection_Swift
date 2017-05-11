@@ -202,6 +202,20 @@ open class SIFloatingCollectionScene: SKScene {
         return indexes
     }
     
+    open func getSelectedTextNodes() -> [String] {
+        var selected_node_text: [String] = []
+        
+        for (_, node) in floatingNodes.enumerated() {
+            if node.state == .selected {
+                if let text = (node as? BubbleNode)?.labelNode.text {
+                    selected_node_text.append(text)
+                }
+                
+            }
+        }
+        return selected_node_text
+    }
+    
     override open func atPoint(_ p: CGPoint) -> SKNode {
         var currentNode = super.atPoint(p)
         
